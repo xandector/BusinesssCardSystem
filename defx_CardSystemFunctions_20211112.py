@@ -26,6 +26,7 @@ def printCardMenu():
     print('--------5.显示所有名片------------')
     print('--------6.退出系统----------------')
     print('----------------------------------')
+    pass
 
 
 def addCard(cardlist):
@@ -151,31 +152,84 @@ def editCard():
     pass
 
 
-def searchCard(search_var):
-    # 按输入信息搜寻，分序号、姓名、模糊
+def searchCard(cardlist):
+    # 按输入信息搜寻，选择序号、姓名、全局模糊搜索
+    while True:
+        nselect = input('1.按序号；2.按姓名；3.模糊搜索；4.返回')
+        if nselect == '1':
+            search_result = searchCardNo(cardlist)
+        elif nselect == '2':
+            search_result = searchCardName(cardlist)
+        elif nselect == '3':
+            search_result = searchCardAll(cardlist)
+        elif nselect == '4':
+            break
+        else:
+            print('输入有误，请重新输入')
+            continue
+        if search_result:       # 如果搜索成功则返回
+            break
+        else:
+            continue
     pass
 
 
-def searchCardNo(search_num):
+def searchCardNo(cardlist):
     # 按序号搜索
-    pass
+    while True:
+        search_num = input('请输入欲查找名片的序号（No.)：')
+        if search_num.isdigit():        # 判断输入信息是否为数字
+            if int(search_num) <= len(cardlist) + 1:    # 判断序号是否小于列表长度（即搜索内容在列表中）
+                for card in cardlist:                   # 遍历cardlist搜索no字段,并打印对应名片
+                    if card['No'] == search_num:
+                        printCard(card)
+                        return True
+                print('列表中找不到对应序号，请检查或使用其他方法搜索。')
+                return False
+            else:
+                print('序号超出列表范围，请重新输入序号。')
+                continue
+        else:
+            print('请输入正确的序号（数字）！')
+            continue
+    print('Search Card No Error!!')
+    return False
 
 
-def searchCardName(search_name):
+def searchCardName(cardlist):
     # 按姓名搜索
-    pass
+    while True:
+        search_name = inputName()
+        rt = 0              # 搜索结果计数，用于函数返回布尔值
+        for card in cardlist:
+            if card['Name'] == search_name:
+                printCard(card)
+                rt += 1
+        return bool(rt)
+    # print('Search Card Name Error!!')
+    # return False
 
 
-def SearchCardAll(search_text):
+def searchCardAll(cardlist):
     # 模糊检索
-    pass
+    while True:
+        search_value = input('请输入要搜索的内容（姓名、邮件、电话等）')
+        rt = 0              # 搜索结果计数，用于函数返回布尔值
+        for card in cardlist:
+            for k, v in card:
+                if search_value in v:
+                    print(card)
+                    rt += 1
+                    break
+        print('搜索完成，共{}项结果'.format(rt))
+        return bool(rt)
 
 
 def listCard(cardlist):
     # 遍历所有名片
     for card in cardlist:
         printCard(card)
-    pass
+        print(' ')
 
 
 def printCard(card):
