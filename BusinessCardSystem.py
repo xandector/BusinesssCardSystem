@@ -3,10 +3,11 @@ from defx_CardSystemFunctions_20211112 import *
 # 初始化名片列表
 aCardList = initCard()
 while True:
-    aSelect = input("Please select(1-6):")
+    printCardMenu()  # 打印菜单
+    aSelect = input("请输入对应数字并回车选择功能:")
     if aSelect == '1':
-        # 添加
-        print('1')
+        # 添加名片
+        aCardList = addCard(aCardList)
         continue
     elif aSelect == '2':
         # 删除
@@ -21,15 +22,14 @@ while True:
         print('4')
         continue
     elif aSelect == '5':
-        # 一览
-        print('5')
+        listCard(aCardList)
         continue
     elif aSelect == '6':
-        # 推出
-        print('6')
-        continue
+        # 退出
+        print('系统已退出，感谢使用')
+        break
     else:
-        print("输入有误，请重新输入：")
+        print("输入有误，请重新输入（1-6）：")
         continue
 
 
