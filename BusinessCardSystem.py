@@ -22,6 +22,7 @@ while True:
         searchCard(aCardList)
         continue
     elif aSelect == '5':
+        # 一览
         listCard(aCardList)
         continue
     elif aSelect == '6':

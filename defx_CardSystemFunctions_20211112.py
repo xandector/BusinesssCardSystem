@@ -226,13 +226,15 @@ def searchCardAll(cardlist):
 
 def listCard(cardlist):
     # 遍历所有名片
-    for card in cardlist:
+    if len(cardlist) < 1:   # cardlist无元素时直接返回
+        print('当前无名片')
+        return
+    for card in cardlist:   # 遍历打印cardlist
         printCard(card)
-        print(' ')
 
 
 def printCard(card):
-    # 打印单张名片
+    # 格式打印单张名片
     cardno = str(card['No'])
     cardname = card['Name']
     cardsex = card['Sex']
@@ -242,11 +244,12 @@ def printCard(card):
     cardaddress = card['Address']
     cardmemo = card['Memo']
     print('=================================')
-    print('|  No.' + cardno + '        ' + cardname)
-    print('|  性别:' + cardsex + '     电话:' + cardphoneno)
-    print('|  社交账号:' + cardsocilid)
-    print('|  电子邮件:' + cardemail)
-    print('|  地址：' + cardaddress)
-    print('|  备注：' + cardmemo)
+    print('|  No.{}        {}'.format(cardno, cardname))
+    print('|  性别:{}     电话:{}'.format(cardsex, cardphoneno))
+    print('|  社交账号:{}'.format(cardsocilid))
+    print('|  电子邮件:{}'.format(cardemail))
+    print('|  地址：{}'.format(cardaddress))
+    print('|  备注：{}'.format(cardmemo))
     print('=================================')
+    print(' ')
     pass
