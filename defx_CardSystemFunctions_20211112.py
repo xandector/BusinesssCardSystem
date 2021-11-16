@@ -171,7 +171,6 @@ def searchCard(cardlist):
             break
         else:
             continue
-    pass
 
 
 def searchCardNo(cardlist):
@@ -181,7 +180,7 @@ def searchCardNo(cardlist):
         if search_num.isdigit():        # 判断输入信息是否为数字
             if int(search_num) <= len(cardlist) + 1:    # 判断序号是否小于列表长度（即搜索内容在列表中）
                 for card in cardlist:                   # 遍历cardlist搜索no字段,并打印对应名片
-                    if card['No'] == search_num:
+                    if int(card['No']) == int(search_num):
                         printCard(card)
                         return True
                 print('列表中找不到对应序号，请检查或使用其他方法搜索。')
@@ -216,9 +215,9 @@ def searchCardAll(cardlist):
         search_value = input('请输入要搜索的内容（姓名、邮件、电话等）')
         rt = 0              # 搜索结果计数，用于函数返回布尔值
         for card in cardlist:
-            for k, v in card:
-                if search_value in v:
-                    print(card)
+            for k in card:
+                if search_value in str(card[k]):
+                    printCard(card)
                     rt += 1
                     break
         print('搜索完成，共{}项结果'.format(rt))

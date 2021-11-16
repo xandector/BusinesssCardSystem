@@ -19,7 +19,7 @@ while True:
         continue
     elif aSelect == '4':
         # 查询
-        print('4')
+        searchCard(aCardList)
         continue
     elif aSelect == '5':
         listCard(aCardList)
