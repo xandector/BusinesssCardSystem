@@ -157,6 +157,7 @@ def inputMemo():
 
 
 def deleteCard(cardlist):
+    # 检测列表是否为空
     if len(cardlist) < 1:
         print('当前列表为空！')
         return False
@@ -169,9 +170,67 @@ def deleteCard(cardlist):
         return True
 
 
-def editCard():
+def editCard(cardlist):
+    # 检测列表是否为空
+    if len(cardlist) < 1:
+        print('当前列表为空！')
+        return False
     # 运行名片查询后修改对应名片key的value
-    pass
+    while True:
+        edit_num = input('请输入需要编辑的名片序号(No.):')  # 输入编辑序号，检测序号
+        if edit_num.isdigit():
+            edit_num = int(edit_num)
+            if edit_num > len(cardlist):
+                print('序号超过列表范围，请重新输入')
+                continue
+            else:
+                edit_num = edit_num - 1     # 转换序号为底标
+                edit_card = cardlist[edit_num]
+                printCard(edit_card, edit_num)     # 打印序号对应卡片
+                # 顺序询问编辑内容，默认不修改
+                # Name
+                print('当前 {} 为 {}'.format('Name', edit_card['Name']))
+                new_name = inputName()
+                if new_name:
+                    cardlist[edit_num]['Name'] = new_name
+                # Sex
+                print('当前 {} 为 {}'.format('Sex', edit_card['Sex']))
+                new_sex = inputSex()
+                if new_sex:
+                    cardlist[edit_num]['Sex'] = new_sex
+                # PhoneNo
+                print('当前 {} 为 {}'.format('PhoneNo', edit_card['PhoneNo']))
+                new_phoneno = inputPhoneNo()
+                if new_phoneno:
+                    cardlist[edit_num]['PhoneNo'] = new_phoneno
+                # SocialID
+                print('当前 {} 为 {}'.format('SocialID', edit_card['SocialID']))
+                new_socialid = inputSocialID()
+                if new_socialid:
+                    cardlist[edit_num]['SocialID'] = new_socialid
+                # Email
+                print('当前 {} 为 {}'.format('Email', edit_card['Email']))
+                new_email = inputEmail()
+                if new_email:
+                    cardlist[edit_num]['Email'] = new_email
+                # Address
+                print('当前 {} 为 {}'.format('Address', edit_card['Address']))
+                new_address = inputAddress()
+                if new_address:
+                    cardlist[edit_num]['Address'] = new_address
+                # Memo
+                print('当前 {} 为 {}'.format('Memo', edit_card['Memo']))
+                new_memo = inputMemo()
+                if new_memo:
+                    cardlist[edit_num]['Memo'] = new_memo
+            # 打印编辑后内容
+            printCard(cardlist[edit_num], edit_num)
+            # print('修改完成')
+            return True
+        else:
+            print('请输入正确的序号（No.)！')
+            continue
+        # return False
 
 
 def searchCard(cardlist):
@@ -201,6 +260,7 @@ def searchCard(cardlist):
 
 
 def searchCardNoWithPrint(cardlist):
+    # 检测列表是否为空
     if len(cardlist) < 1:
         print('当前列表为空！')
         return 0
@@ -234,6 +294,10 @@ def searchCardNoWithPrint(cardlist):
 
 
 # def searchCardNo(cardlist):     # 通过输入序号搜索并返回对应名片字典（不打印）
+#     # 检测列表是否为空
+#     if len(cardlist) < 1:
+#         print('当前列表为空！')
+#         return 0
 #     while True:
 #         search_num = input('请输入名片的序号（No)：')
 #         if search_num.isdigit():
@@ -251,6 +315,7 @@ def searchCardNoWithPrint(cardlist):
 
 
 def searchCardName(cardlist):
+    # 检测列表是否为空
     if len(cardlist) < 1:
         print('当前列表为空！')
         return 0

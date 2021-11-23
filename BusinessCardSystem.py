@@ -18,7 +18,10 @@ while True:
         continue
     elif aSelect == '3':
         # 修改
-        print('3')
+        if editCard(aCardList):
+            print('修改成功')
+        else:
+            print('修改失败')
         continue
     elif aSelect == '4':
         # 查询
