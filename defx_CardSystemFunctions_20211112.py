@@ -3,8 +3,8 @@
 # Key:Sex       Value:String    性别
 # Key:PhoneNo   Value:String    电话
 # Key:SocialID  Value:String    社交媒体号码
-# Key:Emial     Value:String    电子邮件
-# Key:Adress    Value:String    地址
+# Key:Email     Value:String    电子邮件
+# Key:Address    Value:String    地址
 # Key:Memo      Value:String    备注
 
 
