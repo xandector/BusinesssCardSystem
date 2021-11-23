@@ -11,7 +11,10 @@ while True:
         continue
     elif aSelect == '2':
         # 删除
-        print('2')
+        if deleteCard(aCardList):
+            print('删除成功')
+        else:
+            print('删除失败')
         continue
     elif aSelect == '3':
         # 修改
@@ -19,11 +22,17 @@ while True:
         continue
     elif aSelect == '4':
         # 查询
-        searchCard(aCardList)
+        if searchCard(aCardList):
+            print('搜索完成')
+        else:
+            print('搜索中断')
         continue
     elif aSelect == '5':
         # 一览
-        listCard(aCardList)
+        if listCard(aCardList):
+            print('一览完成')
+        else:
+            print('一览失败')
         continue
     elif aSelect == '6':
         # 退出

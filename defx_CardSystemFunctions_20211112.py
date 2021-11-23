@@ -156,11 +156,17 @@ def inputMemo():
     return nmemo
 
 
-def deleteCard():
-    # 运行名片查询后删除对应card字典
-    # 通过序号搜索对应名片
-    # 删除对应名片，并修改列表后方所有名片序号
-    pass
+def deleteCard(cardlist):
+    if len(cardlist) < 1:
+        print('当前列表为空！')
+        return False
+    else:
+        # 通过输入卡片序号，删除cardlist中对应位置的卡片
+        del_num = input('请输入需要删除的名片编号（No.）:')
+        del_num = int(del_num) - 1
+        printCard(cardlist[del_num], del_num)
+        del cardlist[del_num]
+        return True
 
 
 def editCard():
@@ -180,14 +186,14 @@ def searchCard(cardlist):
         elif nselect == '3':
             search_result = searchCardAll(cardlist)
         elif nselect == '4':
-            break
+            return False
         else:
             print('输入有误，请重新输入')
             continue
         if search_result:
             # 如果搜索成功则返回
             print('搜索完成，共找到{}个结果。'.format(search_result))
-            break
+            return True
         else:
             # 没有搜索成功提醒继续搜索
             print('没有找到相关名片，请重试。')
@@ -195,13 +201,16 @@ def searchCard(cardlist):
 
 
 def searchCardNoWithPrint(cardlist):
+    if len(cardlist) < 1:
+        print('当前列表为空！')
+        return 0
     # 按序号搜索名片并打印
     while True:
         search_num = input('请输入名片的序号（No)：')
         if search_num.isdigit():
             # 判断输入信息是否为数字
             search_num = int(search_num) - 1
-            if search_num <= len(cardlist) + 1:
+            if search_num <= len(cardlist):
                 # 判断序号是否小于列表长度（即搜索内容在列表中）
                 # for card in cardlist:
                 #     # 遍历cardlist搜索no字段,并打印对应名片
@@ -224,24 +233,27 @@ def searchCardNoWithPrint(cardlist):
     return 0
 
 
-def searchCardNo(cardlist):     # 通过输入序号搜索并返回对应名片字典（不打印）
-    while True:
-        search_num = input('请输入名片的序号（No)：')
-        if search_num.isdigit():
-            # 判断输入信息是否为数字
-            search_num = int(search_num) - 1    # 将入参传化为列表坐标
-            if search_num <= len(cardlist):
-                # 判断序号是否小于列表长度（即搜索内容在列表中）
-                return cardlist[search_num]
-            else:
-                print('序号超出列表范围，请重新输入序号。')
-                continue
-        else:
-            print('请输入正确的序号（数字）！')
-            continue
+# def searchCardNo(cardlist):     # 通过输入序号搜索并返回对应名片字典（不打印）
+#     while True:
+#         search_num = input('请输入名片的序号（No)：')
+#         if search_num.isdigit():
+#             # 判断输入信息是否为数字
+#             search_num = int(search_num) - 1    # 将入参传化为列表坐标
+#             if search_num <= len(cardlist):
+#                 # 判断序号是否小于列表长度（即搜索内容在列表中）
+#                 return cardlist[search_num]
+#             else:
+#                 print('序号超出列表范围，请重新输入序号。')
+#                 continue
+#         else:
+#             print('请输入正确的序号（数字）！')
+#             continue
 
 
 def searchCardName(cardlist):
+    if len(cardlist) < 1:
+        print('当前列表为空！')
+        return 0
     # 按姓名搜索并打印
     while True:
         search_name = inputName()
@@ -256,6 +268,9 @@ def searchCardName(cardlist):
 
 
 def searchCardAll(cardlist):
+    if len(cardlist) < 1:
+        print('当前列表为空！')
+        return 0
     # 模糊检索卡片字段，并返回结果个数
     while True:
         search_value = input('请输入要搜索的内容（姓名、邮件、电话等）')
@@ -275,9 +290,10 @@ def listCard(cardlist):
     # 遍历所有名片
     if len(cardlist) < 1:   # cardlist无元素时直接返回
         print('当前无名片')
-        return
+        return True
     for card in cardlist:   # 遍历打印cardlist
         printCard(card, cardlist.index(card))
+    return True
 
 
 def printCard(card, index):
