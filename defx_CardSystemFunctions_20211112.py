@@ -104,7 +104,6 @@ def inputPhoneNo():
             print('输入错误，请输入数字号码')
             continue
     print('Phone Number Input Error!!')
-    pass
 
 
 def inputSocialID():
@@ -289,7 +288,7 @@ def searchCardNoWithPrint(cardlist):
             else:
                 print('请输入正确的序号（数字）！')
                 continue
-    print('Search Card No Error!!')
+    print('Search Card No. Error!!')
     return 0
 
 
